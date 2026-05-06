@@ -9,10 +9,19 @@
 #include <fstream>
 #include <iterator>
 
-constexpr int g_Width { 3072 };
-constexpr int g_Height { 4096 };
+constexpr int g_Width { 6720 };
+constexpr int g_Height { 4480 };
 
-// Benchmark: 0.03s - 33 fps
+/*
+    __Benchmark__
+    __CPU__
+    2k Image input- 0.034s ~ 33 fps
+    8k Image input - 0.093s ~ 10 fps
+
+    __GPU__
+    2k Image input - 0.0018 ~ 550 fps
+    8k Image input - 
+*/ 
 // usage: ffmpeg -i 2.jpg -pix_fmt nv12 -f rawvideo output.nv12
 // usage: ffplay -f rawvideo -pixel_format gray -video_size 3072x4096 -i image_output.raw
 
@@ -116,7 +125,7 @@ int main(int argc, char* argv[]) {
     const auto start { std::chrono::high_resolution_clock::now() };
 
     // TODO: change later to path
-    std::ifstream input( "../photos/output.nv12", std::ios::binary | std::ios::ate );
+    std::ifstream input( "../photos/output8k.nv12", std::ios::binary | std::ios::ate );
     if (!input.is_open()) {
         std::cout << "Cant open a file!\n";
         return 1;
