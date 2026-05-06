@@ -88,7 +88,7 @@ __global__ void HandVisionGPU(unsigned char* vec, unsigned char* mask, int width
         int x = idx % width;
         
         // brightness index
-        int Y = vec[y * width + x];
+        int Y = vec[idx];
         // Calculating index
         int uv_row = y / 2;
         int uv_col = x / 2;
@@ -113,14 +113,14 @@ __global__ void HandVisionGPU(unsigned char* vec, unsigned char* mask, int width
         if (B > 255) B = 255;
 
         if (abs(R - colR) <= tolerance && abs(G - colG) <= tolerance && abs(B - colB) <= tolerance) {
-            mask[y * width + x] = 255;
+            mask[idx] = 255;
             
             atomicAdd(&s_sum_00, 1);
             atomicAdd(&s_sum_10, x);
             atomicAdd(&s_sum_01, y);
 
         } else {
-            mask[y * width + x] =  0;
+            mask[idx] =  0;
         }
 
         __syncthreads();
@@ -402,7 +402,7 @@ int main(int argc, char* argv[]) {
         (void)hipFree(device_sum_10);
         return 1;
     }
-    
+
     std::ofstream output( "../photos/image_output.raw", std::ios::binary );
     if (!output.is_open()) {
         std::cout << "Cant open a file!\n";
