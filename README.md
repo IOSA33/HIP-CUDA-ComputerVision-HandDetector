@@ -13,6 +13,9 @@
 ## Image result
 ![Test](./hip/output.jpg)
 
+# Reference
+- https://developer.nvidia.com/gpugems/gpugems2/part-v-image-oriented-computing/chapter-40-computer-vision-gpu
+
 # How to Start CPU side
 - Put your image in the "photos" folder
 - Then in the ```main.cpp``` change the path to the image file
