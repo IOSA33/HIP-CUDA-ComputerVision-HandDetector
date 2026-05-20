@@ -30,6 +30,7 @@ ninja
 - Put your image (nv12 format) in the "photos" folder
 - You can use "output.nv12" in photos folder, for testing the application
 - To run the code write in console, in hip folder
+- If you want CPU test for result then put 1 in the argument line otherwise 0
 ```
 hipcc main.hip.cc -o app
 ./app.exe <path_to_nv12_file> <test?_value_1_or_0>
