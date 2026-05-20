@@ -29,7 +29,7 @@ ninja
 # How to Start GPU side
 - Put your image (nv12 format) in the "photos" folder
 - You can use "output.nv12" in photos folder, for testing the application
-- To run the code write in console, in hip folder
+- To run the code, go to "hip" folder and write in console
 - If you want CPU test for result then put 1 in the argument line otherwise 0
 ```
 hipcc main.hip.cc -o app
